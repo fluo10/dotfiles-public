@@ -3,16 +3,18 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
-CapsLock:: Send {vkF0} ;英数（CapsLock
-CapsLock & Space:: Send {vkF2} ;ひらがな/カタカナキー
-CapsLock & h:: Send {Left}
-CapsLock & j:: Send {Up}
-CapsLock & k:: Send {Down}
-CapsLock & l:: Send {Right}
-CapsLock & [:: Send {Baskspace}
-CapsLock & ]:: Send {Delete}
-CapsLock & vk40:: Send {Home}
-CapsLock & vk41:: Send {End}
-CapsLock & vk53:: Send {PgUp}
-CapsLock & vk54:: Send {PgDn}
+#IfWinActive
+Space:: Send {Space}
+Space & RShift:: Send {vk1C} ;変換
+Space & LShift:: Send {vk1D} ;無変換
+Space & h:: Send {Left}
+Space & j:: Send {Up}
+Space & k:: Send {Down}
+Space & l:: Send {Right}
+Space & vkBA:: Send {Baskspace}
+Space & ':: Send {Delete}
+Space & y:: Send {Home}
+Space & o:: Send {End}
+Space & u:: Send {PgUp}
+Space & i:: Send {PgDn}
  
