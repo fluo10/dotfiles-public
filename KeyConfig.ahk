@@ -1,5 +1,8 @@
 ﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ; #Warn  ; Enable warnings to assist with detecting common errors.
+#InstallKeybdHook
+
+
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
@@ -17,4 +20,19 @@ Space & y:: Send {Blind}{Home}
 Space & o:: Send {Blind}{End}
 Space & u:: Send {Blind}{PgUp}
 Space & i:: Send {Blind}{PgDn}
- 
+
+
+*~LShift::Return
+LShift up::
+    if (A_PriorKey == "LShift" && A_TimeSincePriorHotkey < 500 )
+    {
+        Send {vk1D} ;無変換
+    }
+    Return
+*~RShift::Return
+RShift up::
+    if (A_PriorKey == "RShift" and A_TimeSincePriorHotkey < 500)
+    {
+       Send {vk1C} ;変換
+    }
+Return
