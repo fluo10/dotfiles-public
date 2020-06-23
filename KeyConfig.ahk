@@ -8,8 +8,8 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 #IfWinActive
 Space:: Send {Blind}{Space}
-Space & RShift:: Send {Blind}{vk1C} ;変換
-Space & LShift:: Send {Blind}{vk1D} ;無変換
+;Space & RShift:: Send {Blind}{vk1C} ;変換
+;Space & LShift:: Send {Blind}{vk1D} ;無変換
 Space & h:: Send {Blind}{Left}
 Space & j:: Send {Blind}{Up}
 Space & k:: Send {Blind}{Down}
@@ -28,7 +28,8 @@ LShift up::
     {
         Send {vk1D} ;無変換
     }
-    Return
+Return
+
 *~RShift::Return
 RShift up::
     if (A_PriorKey == "RShift" and A_TimeSincePriorHotkey < 500)
