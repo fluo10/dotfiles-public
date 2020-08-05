@@ -7,7 +7,7 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 #IfWinActive
-Space:: Send {Blind}{Space}
+*Space:: Send {Blind}{Space}
 ;Space & RShift:: Send {Blind}{vk1C} ;変換
 ;Space & LShift:: Send {Blind}{vk1D} ;無変換
 Space & h:: Send {Blind}{Left}
@@ -22,17 +22,29 @@ Space & u:: Send {Blind}{PgUp}
 Space & i:: Send {Blind}{PgDn}
 
 
+<<<<<<< HEAD
 *~LShift::Return
 LShift up::
     if ( A_PriorKey == "LShift" && A_TimeSincePriorHotkey<200 )
+=======
+~LShift::Return
+~LShift up::
+    if (A_PriorKey == "LShift" && A_TimeSincePriorHotkey < 500 )
+>>>>>>> b730f04ab7340de0ddcac1c23ee9114f163e3423
     {
         Send {vk1D} ;無変換
     }
 Return
 
+<<<<<<< HEAD
 *~RShift::Return
 RShift up::
     if ( A_PriorKey == "RShift" && A_TimeSincePriorHotkey<200 )
+=======
+~RShift::Return
+~RShift up::
+    if (A_PriorKey == "RShift" and A_TimeSincePriorHotkey < 500)
+>>>>>>> b730f04ab7340de0ddcac1c23ee9114f163e3423
     {
        Send {vk1C} ;変換
     }
