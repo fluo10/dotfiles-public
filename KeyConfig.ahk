@@ -24,7 +24,7 @@ Space & i:: Send {Blind}{PgDn}
 
 *~LShift::Return
 LShift up::
-    if (A_PriorKey == "LShift" && A_TimeSincePriorHotkey < 500 )
+    if ( A_PriorKey == "LShift" && A_TimeSincePriorHotkey<200 )
     {
         Send {vk1D} ;無変換
     }
@@ -32,8 +32,29 @@ Return
 
 *~RShift::Return
 RShift up::
-    if (A_PriorKey == "RShift" and A_TimeSincePriorHotkey < 500)
+    if ( A_PriorKey == "RShift" && A_TimeSincePriorHotkey<200 )
     {
        Send {vk1C} ;変換
     }
 Return
+
+VK07::
+    global GameWin
+    WinGetActiveTitle,  GameWin
+Return
+
+Joy1::
+Joy2::
+Joy3::
+Joy4::
+Joy5::
+Joy6::
+Joy7::
+Joy8::
+    global GameWin
+    IF (!WinActive( GameWin)) && (WinExist(GameWin))
+    {
+        WinActivate, GameWin
+    } 
+Return
+
