@@ -22,29 +22,18 @@ Space & u:: Send {Blind}{PgUp}
 Space & i:: Send {Blind}{PgDn}
 
 
-<<<<<<< HEAD
 *~LShift::Return
 LShift up::
     if ( A_PriorKey == "LShift" && A_TimeSincePriorHotkey<200 )
-=======
-~LShift::Return
-~LShift up::
-    if (A_PriorKey == "LShift" && A_TimeSincePriorHotkey < 500 )
->>>>>>> b730f04ab7340de0ddcac1c23ee9114f163e3423
+
     {
         Send {vk1D} ;無変換
     }
 Return
 
-<<<<<<< HEAD
 *~RShift::Return
 RShift up::
     if ( A_PriorKey == "RShift" && A_TimeSincePriorHotkey<200 )
-=======
-~RShift::Return
-~RShift up::
-    if (A_PriorKey == "RShift" and A_TimeSincePriorHotkey < 500)
->>>>>>> b730f04ab7340de0ddcac1c23ee9114f163e3423
     {
        Send {vk1C} ;変換
     }
