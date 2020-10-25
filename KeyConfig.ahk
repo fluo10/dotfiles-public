@@ -33,9 +33,8 @@ Space & 0:: Send {Blind}{F10}
 Space & -:: Send {Blind}{F11}
 Space & =:: Send {Blind}{F12}
 Space & Tab:: Send {Blind}{Esc}
-
-
-
+Space & Tab :: Send {Blind}{Esc}
+Space & p :: Send {Blind}{PrintScreen}
 
 *~LShift::Return
 LShift up::
