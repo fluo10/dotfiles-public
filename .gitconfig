@@ -1,0 +1,5 @@
+[user]
+	email = fluo10.dev@fireturtle.net
+	name = fluo10
+[core]
+	editor = nvim
