@@ -12,3 +12,4 @@ function mkln() {
 
 mkln ".gitconfig" "$HOME/"
 mkln "nvim/init.vim" "$HOME/.config/nvim/"
+mkln ".zshrc" "$HOME/"
