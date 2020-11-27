@@ -1,2 +1,2 @@
-set formaoptions-=ro
+" set formaoptions-=ro
 set number
