@@ -1,0 +1,9 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+
+[[plugins]]
+repo = 'skanehira/translate.vim'
+
+[[plugin]]
+repo = 'dhruvasagar/vim-table-mode'

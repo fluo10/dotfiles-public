@@ -11,4 +11,10 @@ else
 fi
 
 ## Main
+$DEIN_DIR="$HOME/.cache/dein"
+if [ ! -e $DEIN_DIR ]; then
+	mkdir $DEIN_DIR
+	curl -L https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh | bash -s -- $DEIN_DIR
+fi
 ln -si $CWD/init.vim $HOME/.config/nvim/
+ln -si $CWD/dein.toml $HOME/.config/nvim
