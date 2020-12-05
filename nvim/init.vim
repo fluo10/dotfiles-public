@@ -29,6 +29,7 @@ if dein#load_state(s:dein_dir)
 endif
 
 " Required:
+filetype plugin on
 filetype plugin indent on
 syntax enable
 
