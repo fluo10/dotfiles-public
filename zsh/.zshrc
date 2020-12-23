@@ -93,6 +93,8 @@ if [[ -r /usr/share/zsh/functions/command-not-found.zsh ]]; then
     export PKGFILE_PROMPT_INSTALL_MISSING=1
 fi
 
+
+
 # Use manjaro zsh prompt# enable substitution for prompt
 setopt prompt_subst
 
@@ -152,8 +154,7 @@ parse_git_state() {
     echo "$GIT_PROMPT_PREFIX$GIT_STATE$GIT_PROMPT_SUFFIX"
   fi
 }
-
-git_prompt_string() {
+function git_prompt_string() {
   local git_where="$(parse_git_branch)"
   
   # If inside a Git repository, print its branch and state
@@ -200,3 +201,12 @@ case $(basename "$(cat "/proc/$PPID/comm")") in
   		ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
     ;;
 esac
+
+## Prompt theme
+
+autoload -Uz promptinit
+fpath=("$HOME/.zprompts" "$fpath[@]")
+promptinit
+
+prompt adam2
+
