@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-
 usage_exit(){
     echo "Usage: $0 [-4|-6] keyword"
 }
@@ -56,7 +54,7 @@ get_ipv6(){
         local LENGTH=$IPV6_LENGTH
     fi
     echo -n $KEYWORD  | b2sum -l $LENGTH | (read v; v=${v:0:$((LENGTH/4))}; echo $v)
-#    return
+    #    return
      # echo "get_ipv6 end $*"
 }
 
@@ -112,4 +110,4 @@ else
         split_by_colon "$(get_ipv6 $KEYWORD  $IPV6_LENGTH)" 
    fi
 fi
- 
+echo 
