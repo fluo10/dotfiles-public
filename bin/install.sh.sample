@@ -1,10 +1,14 @@
 #!/bin/bash
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
 
+echo $@
+shift
+echo $@
 function func_b(){
 	echo "func_b@$SCRIPT_DIR"
 }
 
-source $SCRIPT_DIR/../lib/install.sh
+source $SCRIPT_DIR/../install.sh
 
 func_l
+func_l cp
