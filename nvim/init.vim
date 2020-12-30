@@ -1,5 +1,9 @@
 " set formaoptions-=ro
 set number
+set expandtab
+set tabstop=4
+set shiftwidth=4
+
 " dein Scripts-----------------------------
 if &compatible
   set nocompatible               " Be iMproved
