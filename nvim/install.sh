@@ -17,4 +17,4 @@ if [ ! -e $DEIN_DIR ]; then
 	curl -L https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh | bash -s -- $DEIN_DIR
 fi
 ln -si $CWD/init.vim $HOME/.config/nvim/
-ln -si $CWD/dein.toml $HOME/.config/nvim
+ln -si $CWD/dein.toml $HOME/.config/nvim/
