@@ -10,7 +10,7 @@ function reflesh_remote () {
   local SUBPREFIX=()
   local IFS=" "
   local TARGET_BRANCHES=("main" "feature/*")
-  while getopts ps OPT; do
+  while getopts ps: OPT; do
       case $OPT in
   
           p) # Prefix リモートブランチのプレフィクス
@@ -18,7 +18,7 @@ function reflesh_remote () {
               ;;
   
           s) # Sub or shered branch
-		SUBPREFIX=("${SUBPREFIX[@]}" "$OPTARG")
+		SUBPREFIX=("${SUBPREFIX[@]}" "$OPTARG/")
               ;;
       esac
   done
