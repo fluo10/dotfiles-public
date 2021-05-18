@@ -3,8 +3,11 @@
 PATTERN="$1"
 REPLACEMENT="$2"
 
-BRANCHES=`git branch | sed -E "s|$.*[[:space:]]([-0-9a-z/_]+$)|\1|g" | sed -E "|$PATTERN|p"`
+BRANCHES=`git branch | sed -e "s|^.*[[:space:]]\([-0-9a-z/_]\+\)$|\1|g"`
 
 for b in ${BRANCHES[@]} ; do
-  echo git branch -m ${b} `echo ${b} | sed -E "s|$PATTERN|$REPLACEMENT|g"`
+  NEW=`echo ${b} | sed -e "s|$PATTERN|$REPLACEMENT|g"`
+  if [ ! ${b} = $NEW ]; then
+    git branch -m ${b} $NEW
+  fi
 done
