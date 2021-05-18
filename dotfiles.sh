@@ -24,11 +24,17 @@ function reflesh_remote () {
   done
 
   shift `expr $OPTIND - 1`
+    
+
   local REMOTE_NAME=$1
-  
   shift 
-  local REMOTE_URL=(${*})
-  
+  local REMOTE_URL=$1
+  shift
+  local REMOTE_PUSHURL=()
+  while [ "$1" ]; do
+    REMOTE_PUSHURL+=( "$1" )
+    shift
+  done
   if [ $PREFIX = 0 ]; then
     if [  $REMOTE_NAME = 'origin' ] ; then
         PREFIX=""
@@ -37,14 +43,15 @@ function reflesh_remote () {
     fi
   fi
   if [ "`git remote | grep -x  $REMOTE_NAME`" ]; then
-    git remote set-url $REMOTE_NAME ${REMOTE_URL[0]}
+    git remote set-url $REMOTE_NAME "$REMOTE_URL"
     git config --unset-all remote.$REMOTE_NAME.pushurl
   else
-    git remote add $REMOTE_NAME ${REMOTE_URL[0]}
+    git remote add $REMOTE_NAME "${REMOTE_URL[0]}"
   fi
-  if [ ${#REMOTE_URL[@]} -gt 1 ]; then
-    for e in ${REMOTE_URL[@]}; do
-      git remote set-url --add --push $REMOTE_NAME ${e}
+  if [ ${#REMOTE_PUSHURL[@]} -gt 1 ]; then
+    git remote set-url --push $REMOTE_NAME "$REMOTE_URL"
+    for e in ${REMOTE_PUSHURL[@]}; do
+      git remote set-url --add --push $REMOTE_NAME "${e}"
     done
   fi
     
