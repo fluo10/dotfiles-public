@@ -1,15 +1,18 @@
 #!/bin/bash
 #local BUF
-while read line
-do 
-  if [ $BUF = ""; ] then
-    BUF=$line
-  else
-  fi
-done
+
+if [ -p /dev/stdin ]; then
+  code="`cat -`"
+else
+  code="$1"
+fi
 
 function convert_to_unicode(){
-  index=$1
+  if [ -p /dev/stdin ]; then
+    index=`cat -`
+  else
+    index=$1
+  fi
   local PIXEL=()
 # PIXEL[0]="\u2007"
 # PIXEL[1]="\u2597"
@@ -45,6 +48,24 @@ function convert_to_unicode(){
   PIXEL[15]="\u2588\u2588"
   echo -ne "${PIXEL[index]}"
 }
-for ((i=0; i < 16; i++)); do
-  echo `convert_to_unicode $i`
+#for ((i=0; i < 16; i++)); do
+#  echo `convert_to_unicode $i`
+#done
+BUF=""
+#  if [ -p /dev/stdin ]; then
+#    index=`cat -`
+#  else
+#    index=$1
+#  fi
+echo "$code" | while read line; do 
+  if [ "$BUF" = "" ]; then
+    BUF="$line"
+  else
+    for ((i=0; i < ${#BUF}; i+=2 )); do
+#      echo -n ${BUF:i:2}${line:i:2}
+      echo  "obase=10; ibase=2; ${BUF:i:2}${line:i:2}" | bc | convert_to_unicode
+    done
+    echo
+    BUF=""
+  fi
 done
