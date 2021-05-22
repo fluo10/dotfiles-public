@@ -1,5 +1,4 @@
 #!/bin/bash
-# セクション一覧の取得
 function reflesh_remote () {
   
   local OPT
