@@ -11,9 +11,11 @@ config_path="$git_root/dotfiles.conf"
 TARGET_BRANCHES=("main" "feature/*")
 
 function load_config(){
-  readonly valid_config=("valid_branch")
-  valid_config_pattern="$(IFS="|"; echo "${valid_config[*]}")"
-  eval "`cat "$config_path" | grep "$valid_config_pattern"`"
+  # readonly valid_config=("valid_branch")
+  # IFS="|" 
+  # valid_config_pattern="${valid_config[*]}"
+  #eval "`cat "$config_path" | sed -e "s/($valid_config_pattern)"`"
+  valid_branch=(`$script_dir/git-dot-config.sh "remote.valid_branch"`)
 }
 function set_url () {
   if [ "`git remote | grep -x  $remote_name`" ]; then
@@ -29,12 +31,12 @@ function set_url () {
     done
   fi
 }
-function get_valid_remote_branches(){
-  
-  local valid_branch_array=(${valid_branch})
-  local valid_branch_pattern="$(IFS="|"; echo "${valid_branch_array[*]}")"
-  local branch_prefix=`git branch | sed -e "s|^.*[[:space:]]\([-0-9a-z_]\+\)/\($valid_branch_pattern\)$|\1|g" | unique`
-  branch_prefix=()
+function get_valid_branch_prefix(){
+  # echo "valid_branch=$valid_branch"
+  local valid_branch_pattern="`IFS="|"; echo "${valid_branch[*]}" | sed -E "s/\*/.*/g"`"
+  local branch_prefix=`git branch | sed -E "s|^.*[[:space:]]([-0-9a-z_]+)/($valid_branch_pattern)$|\1|g" | uniq`
+  # branch_prefix=()
+  echo "prefix= $branch_prefix"
 }
 function refresh_branches() {
   
@@ -55,6 +57,8 @@ function refresh_branches() {
 }
 
 branch_flag=0
+url=""
+refresh_flag=0
 while getopts nrs:u OPT; do
   case $OPT in
     n)
@@ -67,7 +71,7 @@ while getopts nrs:u OPT; do
       SUBPREFIX=("${SUBPREFIX[@]}" "$OPTARG/")
       ;;
     u)
-      if [ "$url" = "" ]
+      if [ "$url" = "" ]; then
         url="$OPTARG"
       else
         pushurl+="$OPTARG"
@@ -75,16 +79,16 @@ while getopts nrs:u OPT; do
       ;;
   esac
 done
-
+load_config
 shift `expr $OPTIND - 1`
-  
 
 remote_name=$1
 shift 
-if [ "$url" != "" ]
+
+if [ "$url" != "" ]; then
   set_url
 fi
-if [ $refresh_flag = 1 ]
+if [ $refresh_flag = 1 ]; then
   refresh_branch
 fi
-
+get_valid_branch_prefix

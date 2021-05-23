@@ -41,7 +41,7 @@ shift `expr $OPTIND - 1`
 
 if [ "$1" ] ; then
   config_key=$1
-  echo "config_key=$config_key"
+  # echo "config_key=$config_key"
 fi
 
 shift 
