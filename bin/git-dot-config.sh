@@ -20,6 +20,7 @@ function show_list() {
     fi
   done <  $config_path  
 }
+
 config_path="$git_root/dotfiles.conf"
 
 list_flag=0
@@ -36,7 +37,19 @@ while getopts c:ln OPT; do
       ;;
   esac
 done
+shift `expr $OPTIND - 1`
+
+if [ "$1" ] ; then
+  config_key=$1
+  echo "config_key=$config_key"
+fi
+
+shift 
 
 if [ $list_flag = 1 ]; then
   show_list
+fi
+
+if [ "$config_key" ] ; then
+  show_list | sed -nE "s|^$config_key=\"(.*)\"$|\1|p"
 fi
