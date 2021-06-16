@@ -1,0 +1,9 @@
+[core]
+	editor = nvim
+[pull]
+	rebase = false
+[alias]
+	lol = log --graph --decorate --pretty=oneline --all --abbrev-commit --date-order
+[user]
+	email = fluo10.dev@fireturtle.net
+	name = fluo10
